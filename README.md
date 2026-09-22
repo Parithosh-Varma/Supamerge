@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="https://raw.githubusercontent.com/demgufever-arch/Supamerge/main/src/assets/logo.png" alt="SupaMerge" width="120" style="border-radius: 24px;" />
+  <img src="https://raw.githubusercontent.com/Parithosh-Varma/Supamerge/main/src/assets/logo.png" alt="SupaMerge" width="120" style="border-radius: 24px;" />
   <br />
   <br />
   <img src="https://img.shields.io/badge/React-19-10b981?logo=react" alt="React 19" />
@@ -49,7 +49,7 @@ The app has **two phases**: a full marketing landing page (hero, features grid, 
 ## Quick Start
 
 ```sh
-git clone https://github.com/demgufever-arch/Supamerge.git
+git clone https://github.com/Parithosh-Varma/Supamerge.git
 cd Supamerge
 npm install
 npm run dev

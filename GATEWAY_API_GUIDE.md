@@ -536,7 +536,7 @@ case 'yourdb':
 - Backend README: `backend/README.md`
 - API Documentation: `http://localhost:3000/api`
 - Health Check: `http://localhost:3000/health`
-- GitHub: https://github.com/demgufever-arch/Supamerge
+- GitHub: https://github.com/Parithosh-Varma/Supamerge
 
 ---
 

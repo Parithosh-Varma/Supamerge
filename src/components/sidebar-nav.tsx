@@ -159,7 +159,7 @@ const navItemsWithDividers: (NavItemType | NavItemDividerType)[] = [
   },
   {
     label: 'Support',
-    href: 'https://github.com/demgufever-arch/Supamerge',
+    href: 'https://github.com/Parithosh-Varma/Supamerge',
     icon: MessageCircle,
     badge: (
       <BadgeWithDot color="success" type="modern" size="sm">
@@ -169,7 +169,7 @@ const navItemsWithDividers: (NavItemType | NavItemDividerType)[] = [
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/demgufever-arch/Supamerge',
+    href: 'https://github.com/Parithosh-Varma/Supamerge',
     icon: ExternalLink,
   },
 ];

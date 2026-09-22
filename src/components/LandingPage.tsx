@@ -176,7 +176,7 @@ export default function LandingPage({ onLaunch }: LandingPageProps) {
               </button>
             </div>
             <a
-              href="https://github.com/demgufever-arch/Supamerge"
+              href="https://github.com/Parithosh-Varma/Supamerge"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-all hover:-translate-y-0.5"
@@ -221,7 +221,7 @@ export default function LandingPage({ onLaunch }: LandingPageProps) {
                 </button>
               ))}
               <a
-                href="https://github.com/demgufever-arch/Supamerge"
+                href="https://github.com/Parithosh-Varma/Supamerge"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full rounded-lg border py-2 text-sm font-semibold transition-colors mt-2"
@@ -587,7 +587,7 @@ export default function LandingPage({ onLaunch }: LandingPageProps) {
                     <h4 className="font-bold text-sm" style={{ color: 'var(--color-text)' }}>6. Open Source</h4>
                     <p>
                       SupaMerge is open-source software. The full source code is available on 
-                      <a href="https://github.com/demgufever-arch/Supamerge" target="_blank" rel="noopener noreferrer" className="mx-1 underline hover:text-emerald-400">GitHub</a>. 
+                      <a href="https://github.com/Parithosh-Varma/Supamerge" target="_blank" rel="noopener noreferrer" className="mx-1 underline hover:text-emerald-400">GitHub</a>. 
                       You are free to audit, fork, or self-host the application.
                     </p>
 
@@ -600,20 +600,20 @@ export default function LandingPage({ onLaunch }: LandingPageProps) {
                     <h4 className="font-bold text-sm" style={{ color: 'var(--color-text)' }}>8. Contact</h4>
                     <p>
                       For questions about this privacy policy, please open an issue on the 
-                      <a href="https://github.com/demgufever-arch/Supamerge" target="_blank" rel="noopener noreferrer" className="mx-1 underline hover:text-emerald-400">GitHub repository</a>.
+                      <a href="https://github.com/Parithosh-Varma/Supamerge" target="_blank" rel="noopener noreferrer" className="mx-1 underline hover:text-emerald-400">GitHub repository</a>.
                     </p>
                 </div>
               </DialogContent>
             </Dialog>
             <a
-              href="https://github.com/demgufever-arch/Supamerge"
+              href="https://github.com/Parithosh-Varma/Supamerge"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-emerald-400"
               style={{ color: 'var(--color-text-muted)' }}
             >
               <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub" className="h-3.5 w-3.5 dark:brightness-0 dark:invert" />
-              demgufever-arch/Supamerge
+              Parithosh-Varma/Supamerge
             </a>
           </div>
           <div className="flex flex-col items-end gap-1">
