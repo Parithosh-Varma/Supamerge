@@ -79,7 +79,11 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ commands }) => {
       />
 
       {/* Palette */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md z-50 rounded-xl shadow-2xl overflow-hidden"
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Command palette"
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md z-50 rounded-xl shadow-2xl overflow-hidden"
         style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', border: '1px solid' }}>
         {/* Search bar */}
         <div className="flex items-center gap-2 p-4 border-b" style={{ borderColor: 'var(--color-border)' }}>
@@ -88,6 +92,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ commands }) => {
             ref={inputRef}
             type="text"
             placeholder="Type a command..."
+            aria-label="Search commands"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="flex-1 bg-transparent outline-none text-sm"
@@ -99,7 +104,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ commands }) => {
         </div>
 
         {/* Commands list */}
-        <div className="max-h-96 overflow-y-auto">
+        <div className="max-h-96 overflow-y-auto" role="listbox" aria-label="Commands">
           {filtered.length === 0 ? (
             <div className="p-8 text-center" style={{ color: 'var(--color-text-muted)' }}>
               <p className="text-sm">No commands found</p>
@@ -108,12 +113,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ commands }) => {
             filtered.map((cmd, index) => (
               <button
                 key={cmd.id}
+                role="option"
+                aria-selected={index === selectedIndex}
                 onClick={() => {
                   cmd.action();
                   setIsOpen(false);
                 }}
                 className={clsx(
-                  'w-full px-4 py-3 flex items-center justify-between text-left border-0 cursor-pointer transition-colors',
+                  'w-full px-4 py-4 flex items-center justify-between text-left border-0 cursor-pointer transition-colors focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-emerald-500',
                   index === selectedIndex
                     ? 'bg-opacity-100'
                     : 'bg-opacity-0 hover:bg-opacity-5'
@@ -142,11 +149,11 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ commands }) => {
         </div>
 
         {/* Footer hint */}
-        <div className="p-3 border-t flex items-center justify-between text-[10px]" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}>
+        <div className="p-4 border-t flex items-center justify-between text-[10px]" style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}>
           <span>↑ ↓ Enter to select</span>
           <span className="flex gap-1">
-            <kbd style={{ backgroundColor: 'var(--color-surface-alt)', padding: '2px 6px', borderRadius: '3px' }}>⌘</kbd>
-            <kbd style={{ backgroundColor: 'var(--color-surface-alt)', padding: '2px 6px', borderRadius: '3px' }}>K</kbd>
+            <kbd style={{ backgroundColor: 'var(--color-surface-alt)', padding: '2px 6px', borderRadius: '8px' }}>⌘</kbd>
+            <kbd style={{ backgroundColor: 'var(--color-surface-alt)', padding: '2px 6px', borderRadius: '8px' }}>K</kbd>
           </span>
         </div>
       </div>

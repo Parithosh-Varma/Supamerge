@@ -55,7 +55,8 @@ export function SidebarNavigationSectionDividers({
             <div key={item.label}>
               <button
                 onClick={() => toggleFolder(item.label)}
-                className="w-full flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200"
+                aria-expanded={!!isExpanded}
+                className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
                 style={{ color: 'var(--color-text-muted)' }}
               >
                 {Icon && <Icon className="h-4 w-4 shrink-0" />}
@@ -77,14 +78,14 @@ export function SidebarNavigationSectionDividers({
                     <button
                       key={sub.label}
                       onClick={() => sub.href && onNavigate(sub.href)}
-                      className="w-full flex items-center justify-between rounded-md px-3 py-1.5 text-xs transition-all duration-200"
+                      className="w-full flex items-center justify-between rounded-lg px-4 py-2 text-xs transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
                       style={{
                         color: activeUrl === sub.href ? '#10b981' : 'var(--color-text-muted)',
                       }}
                     >
                       <span>{sub.label}</span>
                       {sub.badge !== undefined && (
-                        <span className="rounded-full bg-slate-700 px-1.5 py-0.5 text-[10px] font-bold text-slate-300">
+                        <span className="rounded-lg px-2 py-0.5 text-[10px] font-bold" style={{ backgroundColor: 'var(--color-surface-alt)', color: 'var(--color-text-muted)' }}>
                           {sub.badge}
                         </span>
                       )}
@@ -100,8 +101,9 @@ export function SidebarNavigationSectionDividers({
           <button
             key={item.label}
             onClick={() => item.href && onNavigate(item.href)}
+            aria-current={isActive ? 'page' : undefined}
             className={cn(
-              'w-full flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 relative',
+              'w-full flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 relative focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500',
               isActive ? 'text-emerald-400' : '',
             )}
             style={{ color: isActive ? undefined : 'var(--color-text-muted)' }}

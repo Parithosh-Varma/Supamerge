@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SupabaseNode } from '../types';
 import { createClient } from '@supabase/supabase-js';
-import { Plus, Trash2, Terminal, Check, AlertTriangle, RefreshCw, ShieldCheck, Download, Upload, KeyRound, Eye, EyeOff } from 'lucide-react';
+import { Plus, Trash2, Terminal, Check, AlertTriangle, RefreshCw, ShieldCheck, Download, Upload, KeyRound, Eye, EyeOff, Database } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -368,7 +368,7 @@ export default function NodeConsole({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl p-6 backdrop-blur-xl" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.4)' }}>
+      <div className="rounded-xl p-6 backdrop-blur-xl" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.4)' }}>
         <h2 className="text-xl font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
           Cluster Environment Control
         </h2>
@@ -380,8 +380,8 @@ export default function NodeConsole({
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Left Side: Node Administration */}
         <div className="lg:col-span-3 space-y-6">
-          <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
-            <h3 className="text-base font-bold flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+          <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+            <h3 className="text-base font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
               <Plus className="h-5 w-5 text-emerald-400" />
               Add Real Supabase Node
             </h3>
@@ -392,7 +392,8 @@ export default function NodeConsole({
                   <h4 className="text-xs font-bold text-emerald-400">Onboarding ({onboardingStep + 1}/{ONBOARDING_STEPS.length})</h4>
                   <button
                     onClick={() => setOnboardingStep((onboardingStep + 1) % ONBOARDING_STEPS.length)}
-                    className="text-[9px] px-2 py-1 rounded hover:bg-emerald-500/10 transition"
+                    aria-label="Next onboarding step"
+                    className="text-[9px] px-4 py-2 rounded-lg hover:bg-emerald-500/10 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
                     style={{ color: 'var(--color-text-muted)' }}
                   >
                     Next →
@@ -404,13 +405,14 @@ export default function NodeConsole({
                 <p className="text-[11px] leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
                   {ONBOARDING_STEPS[onboardingStep].description}
                 </p>
-                <div className="flex gap-1.5">
+                <div className="flex gap-2">
                   {ONBOARDING_STEPS.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => setOnboardingStep(i)}
-                      className={`h-1.5 rounded-full transition-all ${
-                        i === onboardingStep ? 'w-6 bg-emerald-400' : 'w-1.5'
+                      aria-label={`Go to onboarding step ${i + 1}`}
+                      className={`h-2 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 ${
+                        i === onboardingStep ? 'w-6 bg-emerald-400' : 'w-2'
                       }`}
                       style={{ backgroundColor: i === onboardingStep ? '#10b981' : 'var(--color-border)' }}
                     />
@@ -493,7 +495,7 @@ export default function NodeConsole({
                     />
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-4">
                 <Button
                   type="submit"
                   disabled={isTesting || !name || !url || !anonKey}
@@ -516,13 +518,13 @@ export default function NodeConsole({
 
             {testResult && (
               <div
-                className={`rounded-lg border p-3 text-xs ${
+                className={`rounded-lg border p-4 text-xs ${
                   testResult.success
-                    ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                    : 'bg-rose-500/5 border-rose-500/20 text-rose-400'
+                    ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-700 dark:text-emerald-400'
+                    : 'bg-rose-500/5 border-rose-500/20 text-rose-700 dark:text-rose-400'
                 }`}
               >
-                <div className="flex items-center gap-1.5 font-bold">
+                <div className="flex items-center gap-2 font-bold">
                   {testResult.success ? (
                     <Check className="h-4 w-4 shrink-0" />
                   ) : (
@@ -540,7 +542,7 @@ export default function NodeConsole({
             )}
           </div>
 
-          <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+          <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
                 Cluster Provisioned Nodes ({nodes.length})
@@ -550,17 +552,19 @@ export default function NodeConsole({
                 size="sm"
                 onClick={checkAllSchemas}
                 disabled={checkingSchema}
-                 className="text-[10px] hover:text-white h-auto px-2 py-1" style={{ color: 'var(--color-text-muted)' }}
+                 className="text-[10px] hover:text-white h-auto px-4 py-2" style={{ color: 'var(--color-text-muted)' }}
               >
                 <RefreshCw className={`h-3 w-3 ${checkingSchema ? 'animate-spin' : ''}`} />
                 Refresh Schemas
               </Button>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {nodes.length === 0 ? (
-                 <div className="text-center py-8 text-xs italic" style={{ color: 'var(--color-text-muted)' }}>
-                   No nodes connected yet. Connect your first Supabase project above!
+                 <div className="rounded-xl border p-8 text-center" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
+                   <Database className="h-6 w-6 mx-auto mb-2" style={{ color: 'var(--color-text-muted)' }} />
+                   <p className="text-xs font-semibold" style={{ color: 'var(--color-text)' }}>No nodes connected yet</p>
+                   <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>Connect your first Supabase project above!</p>
                  </div>
               ) : (
                 nodes.map((node) => {
@@ -582,7 +586,7 @@ export default function NodeConsole({
                          </span>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-3 self-start sm:self-center">
+                      <div className="flex flex-wrap items-center gap-4 self-start sm:self-center">
                         {nodeSchema?.checked && (
                           <div className="flex gap-1">
                           <Badge
@@ -634,7 +638,7 @@ export default function NodeConsole({
 
                         <Badge
                           variant={isOnline ? 'default' : 'destructive'}
-                          className={`gap-1.5 ${isOnline ? 'bg-emerald-500/15 text-emerald-400 hover:bg-emerald-500/20' : ''}`}
+                          className={`gap-2 ${isOnline ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/20' : ''}`}
                         >
                           <span className={`h-1 w-1 rounded-full ${isOnline ? 'bg-emerald-400' : 'bg-rose-400'}`} />
                           {isOnline ? 'Active' : 'Offline'}
@@ -644,6 +648,7 @@ export default function NodeConsole({
                           variant="ghost"
                           size="icon"
                           onClick={() => onDeleteNode(node.id)}
+                          aria-label={`Remove ${node.name} from cluster`}
                            className="hover:text-rose-400 hover:bg-rose-500/10" style={{ color: 'var(--color-text-muted)' }}
                           title="Remove Node from Cluster"
                         >
@@ -660,9 +665,9 @@ export default function NodeConsole({
 
         {/* Right Side: PostgreSQL SQL Schema Exporter */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+          <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
             <div>
-              <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+              <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
                 <Terminal className="h-4 w-4 text-emerald-400" />
                 PostgreSQL Schema Setup
               </h3>
@@ -713,9 +718,9 @@ export default function NodeConsole({
                </pre>
             </div>
 
-            <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+            <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
               <div>
-                <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+                <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
                   <Download className="h-4 w-4 text-emerald-400" />
                   Cluster Configuration
                 </h3>
@@ -724,7 +729,7 @@ export default function NodeConsole({
                 </p>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-4">
                 <Button
                   variant="outline"
                   size="sm"
@@ -763,9 +768,9 @@ export default function NodeConsole({
               </div>
             </div>
 
-            <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+            <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
               <div>
-                <h3 className="text-sm font-bold flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+                <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
                   <KeyRound className="h-4 w-4 text-emerald-400" />
                   API Key Encryption
                 </h3>
@@ -862,7 +867,7 @@ export default function NodeConsole({
               </div>
             </div>
 
-            <div className="rounded-lg border p-3 text-[11px] flex gap-2 leading-relaxed" style={{ backgroundColor: 'color-mix(in srgb, #f59e0b 10%, transparent)', borderColor: 'color-mix(in srgb, #f59e0b 20%, transparent)', color: 'var(--color-text-muted)' }}>
+            <div className="rounded-lg border p-4 text-[11px] flex gap-2 leading-relaxed" style={{ backgroundColor: 'color-mix(in srgb, #f59e0b 10%, transparent)', borderColor: 'color-mix(in srgb, #f59e0b 20%, transparent)', color: 'var(--color-text-muted)' }}>
               <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-500" />
               <div>
                 <strong className="block" style={{ color: 'var(--color-text)' }}>Security Warning</strong>

@@ -25,10 +25,10 @@ const ICONS = {
 };
 
 const COLORS = {
-  success: 'border-emerald-500/30 bg-emerald-500/8 text-emerald-400',
-  error: 'border-rose-500/30 bg-rose-500/8 text-rose-400',
-  warning: 'border-amber-500/30 bg-amber-500/8 text-amber-400',
-  info: 'border-zinc-500/30 bg-zinc-500/8 text-zinc-500',
+  success: 'border-emerald-500/30 bg-emerald-500/8 text-emerald-700 dark:text-emerald-400',
+  error: 'border-rose-500/30 bg-rose-500/8 text-rose-700 dark:text-rose-400',
+  warning: 'border-amber-500/30 bg-amber-500/8 text-amber-700 dark:text-amber-400',
+  info: 'border-zinc-500/30 bg-zinc-500/8 text-zinc-600 dark:text-zinc-400',
 };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -49,19 +49,20 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={{ toast: toastFn }}>
       {children}
-      <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 max-w-sm">
+      <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 max-w-sm" role="status" aria-live="polite">
         {toasts.map(t => {
           const Icon = ICONS[t.type];
           return (
             <div
               key={t.id}
-              className={`flex items-start gap-2.5 rounded-lg border p-3 text-xs font-semibold shadow-xl backdrop-blur-md animate-in slide-in-from-right-2 ${COLORS[t.type]}`}
+              className={`flex items-start gap-2 rounded-lg border p-4 text-xs font-semibold shadow-xl backdrop-blur-md animate-in slide-in-from-right-2 ${COLORS[t.type]}`}
             >
               <Icon className="h-4 w-4 shrink-0 mt-0.5" />
               <span className="flex-1 leading-relaxed">{t.message}</span>
               <button
                 onClick={() => remove(t.id)}
-                className="shrink-0 opacity-60 hover:opacity-100 transition-opacity"
+                aria-label="Dismiss notification"
+                className="shrink-0 opacity-60 hover:opacity-100 transition-opacity rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
               >
                 <X className="h-3.5 w-3.5" />
               </button>

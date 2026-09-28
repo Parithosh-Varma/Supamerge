@@ -183,7 +183,7 @@ export default function KVStore({
           <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
             <Key className="h-6 w-6 text-emerald-400" />
             Sharded Key-Value Store
-            <span className="text-xs font-normal rounded-full px-2.5 py-0.5 border" style={{ backgroundColor: 'var(--color-surface-alt)', color: 'var(--color-text)', borderColor: 'var(--color-border)' }}>
+            <span className="text-xs font-normal rounded-full px-2 py-0.5 border" style={{ backgroundColor: 'var(--color-surface-alt)', color: 'var(--color-text)', borderColor: 'var(--color-border)' }}>
               {isSandbox ? 'Sandbox' : 'Live'}
             </span>
           </h1>
@@ -197,7 +197,7 @@ export default function KVStore({
             variant={activeTab === 'explore' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('explore')}
-            className={`rounded-md px-3 py-1.5 text-xs ${activeTab === 'explore' ? 'text-white' : ''}`}
+            className={`rounded-lg px-4 py-2 text-xs ${activeTab === 'explore' ? 'text-white' : ''}`}
             style={activeTab === 'explore' ? { backgroundColor: 'var(--color-surface-alt)' } : {}}
           >
             Explore Records ({filteredRecords.length})
@@ -206,7 +206,7 @@ export default function KVStore({
             variant={activeTab === 'write' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => setActiveTab('write')}
-            className={`rounded-md px-3 py-1.5 text-xs ${activeTab === 'write' ? 'text-white' : ''}`}
+            className={`rounded-lg px-4 py-2 text-xs ${activeTab === 'write' ? 'text-white' : ''}`}
             style={activeTab === 'write' ? { backgroundColor: 'var(--color-surface-alt)' } : {}}
           >
             Write New Key
@@ -220,7 +220,7 @@ export default function KVStore({
           <div className="lg:col-span-2 space-y-4">
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-3 top-2.5 h-4 w-4" style={{ color: 'var(--color-text-muted)' }} />
+              <Search className="absolute left-3 top-2 h-4 w-4" style={{ color: 'var(--color-text-muted)' }} />
               <Input
                 type="text"
                 placeholder="Search by key name or tag (e.g., 'user', 'config')..."
@@ -235,13 +235,13 @@ export default function KVStore({
               <Table>
                 <TableHeader>
                   <TableRow className="hover:bg-transparent" style={{ borderColor: 'var(--color-border)' }}>
-                    <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3" style={{ color: 'var(--color-text-muted)' }}>Key Name</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3" style={{ color: 'var(--color-text-muted)' }}>Primary Node</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3" style={{ color: 'var(--color-text-muted)' }}>Replica Node</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3 text-center" style={{ color: 'var(--color-text-muted)' }}>V</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3 text-center" style={{ color: 'var(--color-text-muted)' }}>Status</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3 text-right" style={{ color: 'var(--color-text-muted)' }}>Size</TableHead>
-                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-3 text-right" style={{ color: 'var(--color-text-muted)' }}>Actions</TableHead>
+                    <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4" style={{ color: 'var(--color-text-muted)' }}>Key Name</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4" style={{ color: 'var(--color-text-muted)' }}>Primary Node</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4" style={{ color: 'var(--color-text-muted)' }}>Replica Node</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4 text-center" style={{ color: 'var(--color-text-muted)' }}>V</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4 text-center" style={{ color: 'var(--color-text-muted)' }}>Status</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4 text-right" style={{ color: 'var(--color-text-muted)' }}>Size</TableHead>
+                   <TableHead className="text-xs font-semibold uppercase tracking-wider px-4 py-4 text-right" style={{ color: 'var(--color-text-muted)' }}>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -272,9 +272,9 @@ export default function KVStore({
                              ...(selectedRecord?.key === rec.key ? { backgroundColor: 'var(--color-surface-alt)' } : {})
                            }}
                         >
-                          <TableCell className="px-4 py-3.5 font-bold select-all max-w-[180px] truncate" style={{ color: 'var(--color-text)' }}>
+                          <TableCell className="px-4 py-4 font-bold select-all max-w-[180px] truncate" style={{ color: 'var(--color-text)' }}>
                             {rec.key}
-                            <div className="mt-1 flex flex-wrap gap-1">
+                            <div className="mt-2 flex flex-wrap gap-2">
                               {rec.tags.map((tag) => (
                                 <Badge
                                   key={tag}
@@ -286,62 +286,65 @@ export default function KVStore({
                               ))}
                             </div>
                           </TableCell>
-                          <TableCell className="px-4 py-3.5">
+                          <TableCell className="px-4 py-4">
                             <Badge
                               variant={isPrimaryOnline ? 'default' : 'destructive'}
-                              className={`gap-1 px-2 py-0.5 font-bold ${
+                              className={`gap-2 px-2 py-0.5 font-bold ${
                                 isPrimaryOnline
-                                  ? 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/15'
+                                  ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/15'
                                   : ''
                               }`}
                             >
-                              <span className={`h-1.5 w-1.5 rounded-full ${isPrimaryOnline ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                              <span className={`h-2 w-2 rounded-full ${isPrimaryOnline ? 'bg-emerald-400' : 'bg-rose-400'}`} />
                               {getNodeName(rec.nodeId)}
                             </Badge>
                           </TableCell>
-                          <TableCell className="px-4 py-3.5">
+                          <TableCell className="px-4 py-4">
                             {rec.replicaNodeId ? (
                               <Badge
                                 variant={isReplicaOnline ? 'default' : 'destructive'}
-                                className={`gap-1 px-2 py-0.5 font-bold ${
+                                className={`gap-2 px-2 py-0.5 font-bold ${
                                   isReplicaOnline
-                                    ? 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/15'
+                                    ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/15'
                                     : ''
                                 }`}
                               >
-                                <span className={`h-1.5 w-1.5 rounded-full ${isReplicaOnline ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+                                <span className={`h-2 w-2 rounded-full ${isReplicaOnline ? 'bg-emerald-400' : 'bg-rose-400'}`} />
                                 {getNodeName(rec.replicaNodeId)}
                               </Badge>
                             ) : (
                                <span className="italic" style={{ color: 'var(--color-text-muted)' }}>None</span>
                             )}
                           </TableCell>
-                          <TableCell className="px-4 py-3.5 text-center">
+                          <TableCell className="px-4 py-4 text-center">
                             <span className="font-mono font-bold text-xs" style={{ color: 'var(--color-text-muted)' }}>
                               v{rec.version || 1}
                             </span>
                           </TableCell>
-                          <TableCell className="px-4 py-3.5 text-center">
-                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
-                              style={{
-                                backgroundColor: rec.consistencyStatus === 'consistent' ? 'rgba(16, 185, 129, 0.1)' : rec.consistencyStatus === 'inconsistent' ? 'rgba(244, 63, 94, 0.1)' : 'rgba(161, 161, 170, 0.1)',
-                                color: rec.consistencyStatus === 'consistent' ? '#10b981' : rec.consistencyStatus === 'inconsistent' ? '#f43f5e' : '#a1a1aa',
-                              }}>
+                          <TableCell className="px-4 py-4 text-center">
+                            <span className={`inline-flex items-center gap-2 text-[10px] font-semibold px-2 py-1 rounded-lg ${
+                              rec.consistencyStatus === 'consistent'
+                                ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
+                                : rec.consistencyStatus === 'inconsistent'
+                                ? 'bg-rose-500/10 text-rose-700 dark:text-rose-400'
+                                : 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400'
+                            }`}>
                               {rec.consistencyStatus === 'consistent' && <Check className="h-3 w-3" />}
                               {rec.consistencyStatus === 'inconsistent' && <AlertTriangle className="h-3 w-3" />}
                               {rec.consistencyStatus === 'unchecked' || !rec.consistencyStatus ? '?' : null}
                               {rec.consistencyStatus || 'unchecked'}
                             </span>
                           </TableCell>
-                          <TableCell className="px-4 py-3.5 text-right font-semibold" style={{ color: 'var(--color-text-muted)' }}>
+                          <TableCell className="px-4 py-4 text-right font-semibold" style={{ color: 'var(--color-text-muted)' }}>
                             {sizeBytes} B
                           </TableCell>
-                          <TableCell className="px-4 py-3.5 text-right">
-                            <div className="flex justify-end gap-1.5">
+                          <TableCell className="px-4 py-4 text-right">
+                            <div className="flex justify-end gap-2">
                               <Button
                                 variant="ghost"
                                 size="icon"
                                 onClick={() => setSelectedRecord(rec)}
+                                aria-label={`Inspect ${rec.key}`}
                                  className="hover:text-emerald-400 hover:bg-emerald-500/10" style={{ color: 'var(--color-text-muted)' }}
                                 title="Inspect JSON"
                               >
@@ -356,6 +359,7 @@ export default function KVStore({
                                   setNewTags(rec.tags.join(', '));
                                   setActiveTab('write');
                                 }}
+                                aria-label={`Edit ${rec.key}`}
                                  className="hover:text-emerald-400 hover:bg-emerald-500/10" style={{ color: 'var(--color-text-muted)' }}
                                 title="Edit Value"
                               >
@@ -365,6 +369,7 @@ export default function KVStore({
                                 variant="ghost"
                                 size="icon"
                                 onClick={() => onDeleteRecord(rec.key)}
+                                aria-label={`Delete ${rec.key}`}
                                  className="hover:text-rose-400 hover:bg-rose-500/10" style={{ color: 'var(--color-text-muted)' }}
                                 title="Delete Record"
                               >
@@ -384,8 +389,8 @@ export default function KVStore({
           {/* Sidebar: Inspect View & Failover Diagnostics */}
           <div className="space-y-4">
             {/* Record Inspector */}
-            <div className="rounded-xl backdrop-blur-sm p-5" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
-              <h3 className="text-sm font-bold mb-3 flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+            <div className="rounded-xl backdrop-blur-sm p-6" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+              <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
                 <Eye className="h-4 w-4 text-emerald-400" />
                 Record Inspector
               </h3>
@@ -401,20 +406,20 @@ export default function KVStore({
 
                     if (primaryNode && primaryNode.status === 'disconnected') {
                       return (
-                        <div className="rounded-lg bg-rose-500/5 border border-rose-500/15 p-3 text-xs text-rose-300 space-y-1">
-                          <div className="flex items-center gap-1.5 font-semibold">
-                            <ShieldAlert className="h-4 w-4 shrink-0 text-rose-400" />
+                        <div className="rounded-lg bg-rose-500/5 border border-rose-500/15 p-4 text-xs text-rose-700 dark:text-rose-300 space-y-1">
+                          <div className="flex items-center gap-2 font-semibold">
+                            <ShieldAlert className="h-4 w-4 shrink-0 text-rose-500 dark:text-rose-400" />
                             FAILOVER ACTIVE
                           </div>
-                          <p className="text-[11px] text-rose-400/80 leading-relaxed">
+                          <p className="text-[11px] leading-relaxed opacity-80">
                             Primary custodian <strong>{primaryNode.name}</strong> is offline. Shard broker automatically redirected read request to replica <strong>{replicaNode?.name || 'Unknown'}</strong>.
                           </p>
                         </div>
                       );
                     }
                     return (
-                      <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/15 p-3 text-xs text-emerald-300 flex items-center gap-1.5">
-                        <Check className="h-4 w-4 shrink-0 text-emerald-400" />
+                      <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/15 p-4 text-xs text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+                        <Check className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
                         <span>Served directly from primary node.</span>
                       </div>
                     );
@@ -424,7 +429,7 @@ export default function KVStore({
                      <span className="text-[10px] uppercase tracking-wider block" style={{ color: 'var(--color-text-muted)' }}>
                        Key Name
                      </span>
-                     <span className="font-mono text-xs font-bold px-2.5 py-1 rounded block truncate" style={{ color: 'var(--color-text)', backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                     <span className="font-mono text-xs font-bold px-2 py-1 rounded-lg block truncate" style={{ color: 'var(--color-text)', backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                       {selectedRecord.key}
                     </span>
                   </div>
@@ -433,7 +438,7 @@ export default function KVStore({
                      <span className="text-[10px] uppercase tracking-wider block" style={{ color: 'var(--color-text-muted)' }}>
                        JSON Value
                      </span>
-                     <pre className="font-mono text-[11px] p-3 rounded-lg overflow-auto max-h-[220px] leading-relaxed" style={{ color: 'var(--color-text)', backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                     <pre className="font-mono text-[11px] p-4 rounded-lg overflow-auto max-h-[220px] leading-relaxed" style={{ color: 'var(--color-text)', backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                       {JSON.stringify(selectedRecord.value, null, 2)}
                     </pre>
                   </div>
@@ -452,7 +457,7 @@ export default function KVStore({
             </div>
 
             {/* Educational Sharding Info */}
-            <div className="rounded-xl backdrop-blur-sm p-5 text-xs space-y-2.5" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)', color: 'var(--color-text-muted)' }}>
+            <div className="rounded-xl backdrop-blur-sm p-6 text-xs space-y-2.5" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)', color: 'var(--color-text-muted)' }}>
               <h4 className="font-bold uppercase tracking-wider text-[10px]" style={{ color: 'var(--color-text)' }}>
                 How KV Sharding Works
               </h4>
@@ -474,7 +479,7 @@ export default function KVStore({
         <div className="grid gap-6 md:grid-cols-2">
           {/* Form Column */}
           <div className="rounded-xl backdrop-blur-sm p-6" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.15)' }}>
-            <h3 className="text-base font-bold mb-4 flex items-center gap-1.5" style={{ color: 'var(--color-text)' }}>
+            <h3 className="text-base font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
               <Plus className="h-5 w-5 text-emerald-400" />
               Store Key-Value Pair
             </h3>
@@ -576,17 +581,11 @@ export default function KVStore({
                   writeLogs.map((log, i) => (
                     <div
                       key={i}
-                       className={`py-1 leading-relaxed ${
-                         log.startsWith('[ERROR]')
-                           ? 'text-rose-400'
-                           : log.includes('SUCCESS')
-                           ? 'text-emerald-400 font-bold'
-                           : ''
-                       }`}
+                       className="py-2 leading-relaxed text-xs font-semibold"
                        style={{
                          borderColor: 'var(--color-border)',
                          borderBottom: '1px solid',
-                         color: log.includes('SUCCESS') ? '#10b981' : log.startsWith('[ERROR]') ? '#f87171' : 'var(--color-text-muted)'
+                         color: log.includes('SUCCESS') ? '#059669' : log.startsWith('[ERROR]') ? '#e11d48' : 'var(--color-text-muted)'
                        }}
                     >
                       {log}
@@ -603,25 +602,25 @@ export default function KVStore({
                    Visual Topology Route
                  </span>
                 
-                 <div className="flex items-center justify-between gap-2 rounded-lg p-3" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                 <div className="flex items-center justify-between gap-2 rounded-lg p-4" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                    {/* Key */}
-                    <div className="text-center px-2 py-1 rounded max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                    <div className="text-center px-2 py-1 rounded-lg max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                       <span className="text-[10px] block" style={{ color: 'var(--color-text-muted)' }}>Key</span>
                       <span className="font-mono text-[10px] font-bold" style={{ color: 'var(--color-text)' }}>"{writeVisual.key}"</span>
                    </div>
                   
                   {/* arrow */}
                   <div className="flex-1 flex flex-col items-center">
-                    <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1 rounded border border-emerald-500/20 mb-1">
+                    <span className="text-[9px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2 rounded-lg border border-emerald-500/20 mb-1">
                       Hash Module
                     </span>
                     <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500 to-emerald-400 relative">
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-white animate-ping" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-white animate-ping" />
                     </div>
                   </div>
 
                    {/* Primary Node */}
-                    <div className="text-center px-2 py-1 rounded max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                    <div className="text-center px-2 py-1 rounded-lg max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                      <span className="text-[10px] block" style={{ color: 'var(--color-text-muted)' }}>Primary</span>
                      <span className={`font-mono text-[10px] font-bold ${getNodeColorClass(writeVisual.primaryNode)}`}>
                        {getNodeName(writeVisual.primaryNode)}
@@ -632,7 +631,7 @@ export default function KVStore({
                   {writeVisual.replicaNode && (
                     <>
                       <div className="h-0.5 w-6" style={{ backgroundColor: 'var(--color-border)' }} />
-                       <div className="text-center px-2 py-1 rounded max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
+                       <div className="text-center px-2 py-1 rounded-lg max-w-[100px] truncate" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', border: '1px solid' }}>
                          <span className="text-[10px] block" style={{ color: 'var(--color-text-muted)' }}>Replica</span>
                          <span className={`font-mono text-[10px] font-bold ${getNodeColorClass(writeVisual.replicaNode)}`}>
                            {getNodeName(writeVisual.replicaNode)}
