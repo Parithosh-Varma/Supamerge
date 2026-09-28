@@ -303,7 +303,7 @@ export default function FileSharding({
           <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2" style={{ color: 'var(--color-text)' }}>
             <Layers className="h-6 w-6 text-emerald-400" />
             Distributed File Sharding
-            <span className="text-xs font-normal rounded-full px-2.5 py-0.5 border" style={{ backgroundColor: 'var(--color-surface-alt)', color: 'var(--color-text)', borderColor: 'var(--color-border)' }}>
+            <span className="text-xs font-normal rounded-full px-2 py-0.5 border" style={{ backgroundColor: 'var(--color-surface-alt)', color: 'var(--color-text)', borderColor: 'var(--color-border)' }}>
               {isSandbox ? 'Sandbox' : 'Live'}
             </span>
           </h1>
@@ -315,7 +315,7 @@ export default function FileSharding({
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Upload Panel */}
-        <div className="rounded-xl backdrop-blur-sm p-5 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
+        <div className="rounded-xl backdrop-blur-sm p-6 space-y-4" style={{ borderColor: 'var(--color-border)', border: '1px solid', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
           <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
             Shard New File
           </h3>
@@ -337,7 +337,7 @@ export default function FileSharding({
                     onClick={() => setChunkSizeKb(size)}
                     className={`font-mono font-bold ${
                        chunkSizeKb === size
-                         ? 'bg-emerald-600/10 text-emerald-400 border-emerald-500/45 hover:bg-emerald-600/15'
+                         ? 'bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/45 hover:bg-emerald-600/15'
                          : ''
                     }`}
                     style={chunkSizeKb === size ? {} : { backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
@@ -346,7 +346,7 @@ export default function FileSharding({
                   </Button>
                 ))}
               </div>
-               <span className="text-[10px] mt-1.5 block leading-normal" style={{ color: 'var(--color-text-muted)' }}>
+               <span className="text-[10px] mt-2 block leading-normal" style={{ color: 'var(--color-text-muted)' }}>
                  Smaller chunks distribute data more evenly across nodes but generate more API requests.
                </span>
             </div>
@@ -363,19 +363,19 @@ export default function FileSharding({
               />
               <label
                 htmlFor="file-upload-input"
-                className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ${
+                className={`flex flex-col items-center justify-center border border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ${
                   isUploading
                     ? 'border-emerald-500/20 bg-emerald-500/5 cursor-not-allowed'
-                    : 'border-slate-800 bg-slate-950/40 hover:border-slate-700 hover:bg-slate-950/80'
+                    : 'border-[var(--color-border)] hover:border-[var(--color-border-hover)] bg-[var(--color-surface-alt)]'
                 }`}
               >
-                 <div className="rounded-full bg-slate-900 p-3 border border-slate-800 mb-3 group-hover:scale-110 transition" style={{ color: 'var(--color-text-muted)' }}>
+                 <div className="rounded-full p-4 border mb-4 group-hover:scale-110 transition" style={{ color: 'var(--color-text-muted)', backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}>
                    <Upload className="h-6 w-6 text-emerald-400" />
                  </div>
                 <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
                   {isUploading ? 'Uploading Shards...' : 'Select File to Shard'}
                 </span>
-                 <span className="text-xs mt-1 max-w-[180px]" style={{ color: 'var(--color-text-muted)' }}>
+                 <span className="text-xs mt-2 max-w-[180px]" style={{ color: 'var(--color-text-muted)' }}>
                    Supports images, PDFs, text, and JSON files up to 5MB.
                  </span>
               </label>
@@ -383,15 +383,15 @@ export default function FileSharding({
 
             {/* Upload Progress Bar */}
             {isUploading && (
-              <div className="rounded-lg bg-slate-950 border border-slate-800 p-4 space-y-3">
+              <div className="rounded-lg border p-4 space-y-3" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}>
                 <div className="flex justify-between text-xs font-semibold">
-                  <span className="text-emerald-400 flex items-center gap-1.5">
+                  <span className="text-emerald-400 flex items-center gap-2">
                     <RefreshCw className="h-3.5 w-3.5 animate-spin" />
                     {uploadStatus}
                   </span>
-                  <span className="text-slate-300">{uploadProgress}%</span>
+                  <span className="">{uploadProgress}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-900 overflow-hidden">
+                <div className="h-2 w-full rounded-full overflow-hidden" style={{ backgroundColor: 'var(--color-border)' }}>
                   <div
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}
@@ -403,28 +403,28 @@ export default function FileSharding({
         </div>
 
         {/* Distributed Files List */}
-        <div className="lg:col-span-2 rounded-xl border border-slate-800 bg-slate-900/10 p-5 backdrop-blur-sm space-y-4">
+        <div className="lg:col-span-2 rounded-xl border p-6 backdrop-blur-sm space-y-4" style={{ borderColor: 'var(--color-border)', backgroundColor: 'rgba(var(--color-surface-alt-rgb, 228 228 231), 0.1)' }}>
           <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text)' }}>
             Distributed File System Explorer
           </h3>
 
-          <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-950/40">
+          <div className="overflow-hidden rounded-lg border" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
             <div className="overflow-x-auto">
                <table className="w-full border-collapse text-left text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                 <thead className="border-b border-slate-800 bg-slate-900/30 text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
+                 <thead className="border-b text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)', borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface-alt)' }}>
                    <tr>
-                    <th className="px-4 py-3">File Details</th>
-                    <th className="px-4 py-3 text-center">Chunks</th>
-                    <th className="px-4 py-3">Global Node Distribution Map</th>
-                    <th className="px-4 py-3 text-center">CRC</th>
-                    <th className="px-4 py-3 text-right">Actions</th>
+                    <th className="px-4 py-4">File Details</th>
+                    <th className="px-4 py-4 text-center">Chunks</th>
+                    <th className="px-4 py-4">Global Node Distribution Map</th>
+                    <th className="px-4 py-4 text-center">CRC</th>
+                    <th className="px-4 py-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800">
+                <tbody className="divide-y divide-[var(--color-border)]">
                   {files.length === 0 ? (
                     <tr>
                        <td colSpan={5} className="px-4 py-12 text-center font-sans" style={{ color: 'var(--color-text-muted)' }}>
-                         <HardDrive className="h-8 w-8 text-slate-600 mx-auto mb-2" />
+                         <HardDrive className="h-8 w-8 mx-auto mb-2" style={{ color: 'var(--color-text-muted)' }} />
                          No files currently sharded in the cluster.
                          <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>Upload a file to see how it distributes across your Supabase databases!</p>
                        </td>
@@ -432,12 +432,12 @@ export default function FileSharding({
                   ) : (
                     files.map((file) => (
                       <tr key={file.id} className="transition hover:bg-[var(--color-surface-alt)] cursor-pointer">
-                        <td className="px-4 py-3.5 flex items-center gap-3">
-                          <div className="rounded-lg bg-slate-900 p-2 border border-slate-800">
+                        <td className="px-4 py-4 flex items-center gap-4">
+                          <div className="rounded-lg p-2 border" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)' }}>
                             {getFileIcon(file.type)}
                           </div>
                           <div className="min-w-0 max-w-[150px] sm:max-w-[200px]">
-                            <span className="font-bold text-slate-200 block truncate" title={file.name}>
+                            <span className="font-bold block truncate" title={file.name} style={{ color: 'var(--color-text)' }}>
                               {file.name}
                             </span>
                              <span className="text-[10px] block font-mono mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
@@ -445,12 +445,12 @@ export default function FileSharding({
                              </span>
                           </div>
                         </td>
-                        <td className="px-4 py-3.5 text-center font-mono font-bold" style={{ color: 'var(--color-text-muted)' }}>
+                        <td className="px-4 py-4 text-center font-mono font-bold" style={{ color: 'var(--color-text-muted)' }}>
                           {file.totalChunks}
                         </td>
-                        <td className="px-4 py-3.5">
+                        <td className="px-4 py-4">
                           {/* Visual Chunk Grid Map */}
-                          <div className="flex flex-wrap gap-1.5 max-w-[240px]">
+                          <div className="flex flex-wrap gap-2 max-w-[240px]">
                             {Array.from({ length: file.totalChunks }).map((_, idx) => {
                               const nodeId = file.nodeDistribution[idx];
                               const node = nodes.find((n) => n.id === nodeId);
@@ -459,30 +459,30 @@ export default function FileSharding({
                               return (
                                 <div
                                   key={idx}
-                                  className={`group relative flex h-6 w-7 items-center justify-center rounded border font-mono text-[9px] font-bold transition ${
+                                  className={`group relative flex h-6 w-7 items-center justify-center rounded-lg border font-mono text-[9px] font-bold transition ${
                                     isOnline
-                                      ? 'bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-600'
-                                      : 'bg-rose-950/40 text-rose-400 border-rose-900/60 hover:bg-rose-950/80 animate-pulse'
+                                      ? 'text-[var(--color-text)] border-[var(--color-border)] hover:border-[var(--color-border-hover)] bg-[var(--color-surface-alt)]'
+                                      : 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/30 hover:bg-rose-500/15 animate-pulse'
                                   }`}
                                 >
                                   {/* Dot indicator matching node color */}
                                   <span
-                                    className={`absolute top-0.5 right-0.5 h-1.5 w-1.5 rounded-full ${
+                                    className={`absolute top-0.5 right-0.5 h-2 w-2 rounded-full ${
                                       isOnline ? getNodeColor(nodeId).split(' ')[0] : 'bg-rose-500'
                                     }`}
                                   />
                                   C{idx}
                                   
                                   {/* Tooltip */}
-                                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-25 hidden group-hover:block w-40 rounded bg-slate-950 border border-slate-800 p-2 text-[10px] text-slate-300 font-sans shadow-xl">
-                                    <div className="font-bold text-slate-200">Chunk {idx}</div>
+                                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-25 hidden group-hover:block w-40 rounded-lg border p-2 text-[10px] font-sans shadow-xl" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}>
+                                    <div className="font-bold" style={{ color: 'var(--color-text)' }}>Chunk {idx}</div>
                                     <div className="mt-1 flex justify-between">
                                       <span>Node:</span>
-                                      <span className="font-mono text-emerald-400">{getNodeName(nodeId)}</span>
+                                      <span className="font-mono text-emerald-700 dark:text-emerald-400">{getNodeName(nodeId)}</span>
                                     </div>
                                     <div className="flex justify-between">
                                       <span>Status:</span>
-                                      <span className={isOnline ? 'text-emerald-400' : 'text-rose-400'}>
+                                      <span className={isOnline ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}>
                                         {isOnline ? 'Online' : 'OFFLINE'}
                                       </span>
                                     </div>
@@ -492,17 +492,17 @@ export default function FileSharding({
                             })}
                           </div>
                         </td>
-                        <td className="px-4 py-3.5 text-center">
-                          <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold px-2 py-0.5 rounded"
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center gap-2 text-[9px] font-mono font-bold px-2 py-0.5 rounded-lg"
                             style={{
                               backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                              color: '#10b981',
+                              color: 'var(--color-accent)',
                             }}>
                             <ShieldCheck className="h-3 w-3" />
                             CRC32
                           </span>
                         </td>
-                        <td className="px-4 py-3.5 text-right">
+                        <td className="px-4 py-4 text-right">
                           <div className="flex justify-end gap-2">
                             <Button
                               variant="outline"
@@ -510,7 +510,7 @@ export default function FileSharding({
                               onClick={() => handleDownload(file)}
                               disabled={isDownloading !== null}
                               className="bg-emerald-600/10 hover:bg-emerald-600 border-emerald-500/25 hover:border-emerald-500 text-emerald-400 hover:text-white"
-                              title="Download & Reassemble File"
+                              aria-label={`Download ${file.name}`} title="Download & Reassemble File"
                             >
                               <Download className="h-4 w-4" />
                             </Button>
@@ -519,8 +519,8 @@ export default function FileSharding({
                               size="icon"
                               onClick={() => onDeleteFile(file.id)}
                               disabled={isDownloading !== null}
-                               className="bg-slate-900 hover:bg-rose-500/10 border-slate-800 hover:border-rose-500/30 hover:text-rose-400" style={{ color: 'var(--color-text-muted)' }}
-                              title="Delete File Shards"
+                               className="hover:bg-rose-500/10 border-[var(--color-border)] hover:border-rose-500/30 hover:text-rose-400" style={{ color: 'var(--color-text-muted)' }}
+                              aria-label={`Delete ${file.name}`} title="Delete File Shards"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -538,18 +538,18 @@ export default function FileSharding({
 
       {/* Diagnostics Logs Modal */}
       <Dialog open={showDiagnosticsModal} onOpenChange={(open) => { if (!isDownloading) setShowDiagnosticsModal(open); }}>
-        <DialogContent className="max-w-lg border-slate-800 bg-slate-900 text-slate-200">
+        <DialogContent className="max-w-lg">
           <DialogHeader>
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <DialogTitle className="text-sm font-bold text-slate-200 uppercase tracking-wide">
+              <DialogTitle className="text-sm font-bold uppercase tracking-wide">
                 Distributed Stream Diagnostics
               </DialogTitle>
             </div>
             <DialogDescription className="hidden" />
           </DialogHeader>
 
-          <div className="bg-slate-950 rounded-lg p-4 font-mono text-[10px] text-slate-300 border border-slate-800 h-64 overflow-y-auto space-y-1.5">
+          <div className="rounded-lg p-4 font-mono text-[10px] border h-64 overflow-y-auto space-y-1.5" style={{ backgroundColor: 'var(--color-surface-alt)', borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}>
             {downloadDiagnostics.map((line, idx) => (
               <div
                 key={idx}
@@ -569,7 +569,7 @@ export default function FileSharding({
           </div>
 
           <div className="flex justify-between items-center text-xs pt-2">
-             <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+             <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--color-text-muted)' }}>
                {isDownloading ? (
                  <>
                    <RefreshCw className="h-3.5 w-3.5 animate-spin text-emerald-400" />

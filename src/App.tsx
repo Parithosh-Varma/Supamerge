@@ -861,16 +861,16 @@ export default function App() {
 
   const renderSkeleton = () => (
     <div className="animate-pulse space-y-6 p-6">
-      <div className="h-6 w-48 rounded-lg bg-slate-800/50" />
-      <div className="h-4 w-96 rounded-lg bg-slate-800/30" />
+      <div className="h-6 w-48 rounded-lg" style={{ backgroundColor: 'var(--color-surface-alt)' }} />
+      <div className="h-4 w-96 rounded-lg" style={{ backgroundColor: 'var(--color-surface)' }} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="rounded-xl border border-slate-800/40 bg-slate-900/10 p-6 space-y-4">
-            <div className="h-10 w-10 rounded-lg bg-slate-800/50" />
-            <div className="h-4 w-3/4 rounded-lg bg-slate-800/40" />
+          <div key={i} className="rounded-xl border p-6 space-y-4" style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
+            <div className="h-10 w-10 rounded-lg" style={{ backgroundColor: 'var(--color-surface-alt)' }} />
+            <div className="h-4 w-3/4 rounded-lg" style={{ backgroundColor: 'var(--color-surface-alt)' }} />
             <div className="space-y-2">
-              <div className="h-3 w-full rounded-lg bg-slate-800/30" />
-              <div className="h-3 w-5/6 rounded-lg bg-slate-800/30" />
+              <div className="h-3 w-full rounded-lg" style={{ backgroundColor: 'var(--color-surface)' }} />
+              <div className="h-3 w-5/6 rounded-lg" style={{ backgroundColor: 'var(--color-surface)' }} />
             </div>
           </div>
         ))}
@@ -1000,35 +1000,36 @@ export default function App() {
         {/* Main Content Area — adjusts margin to make room for sidebar */}
         <main
           className={`flex-1 flex flex-col min-h-screen bg-grid transition-all duration-300 ease-in-out ${
-            sidebarOpen ? 'ml-64' : 'ml-0'
+            sidebarOpen ? 'md:ml-64' : 'ml-0'
           }`}
         >
           {/* Top Header */}
           <header className="h-14 border-b px-6 backdrop-blur-md flex items-center justify-between shrink-0" style={{ backgroundColor: 'var(--color-header-bg)', borderColor: 'var(--color-border)' }}>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="flex h-7 w-7 items-center justify-center rounded-lg border shadow-sm transition-all duration-200 hover:scale-105 shrink-0"
+                aria-label={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border shadow-sm transition-all duration-200 hover:scale-105 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
                 style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
                 title={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
               >
-                {sidebarOpen ? <PanelLeftClose className="h-3.5 w-3.5" /> : <PanelLeft className="h-3.5 w-3.5" />}
+                {sidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
               </button>
               <span className="text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>Environment:</span>
-              <span className="rounded-full px-3 py-0.5 font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-sm shadow-emerald-950/20 text-xs">
+              <span className="rounded-lg px-3 py-1 font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-sm shadow-emerald-950/20 text-xs">
                 Production Unified Pool
               </span>
             </div>
 
             <div className="flex items-center gap-4 text-xs">
               {nodes.length === 0 && (
-                <div className="hidden sm:flex items-center gap-1.5 text-rose-400/90 bg-rose-500/8 border border-rose-500/20 rounded-lg px-3 py-1 font-semibold">
+                <div className="hidden sm:flex items-center gap-2 text-rose-700 dark:text-rose-400/90 bg-rose-500/8 border border-rose-500/20 rounded-lg px-4 py-2 font-semibold">
                   <ShieldAlert className="h-3.5 w-3.5 shrink-0" />
                   <span>No projects connected. Add them in Cluster Console.</span>
                 </div>
               )}
               {isSandbox && (
-                <div className="hidden sm:flex items-center gap-1.5 text-emerald-400/90 bg-emerald-500/8 border border-emerald-500/20 rounded-lg px-3 py-1 font-semibold">
+                <div className="hidden sm:flex items-center gap-2 text-emerald-700 dark:text-emerald-400/90 bg-emerald-500/8 border border-emerald-500/20 rounded-lg px-4 py-2 font-semibold">
                   <Database className="h-3.5 w-3.5 shrink-0" />
                   <span>Sandbox demo — add real nodes in Cluster Console</span>
                 </div>
@@ -1045,7 +1046,8 @@ export default function App() {
 
               <button
                 onClick={handleBackToLanding}
-                className="flex items-center gap-1.5 transition-colors p-1 rounded-lg hover:bg-slate-800/30"
+                aria-label="About SupaMerge"
+                className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 hover:bg-[var(--color-surface-alt)]"
                 style={{ color: 'var(--color-text-muted)' }}
                 title="About SupaMerge"
               >
